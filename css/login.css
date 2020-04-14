@@ -1,0 +1,90 @@
+body{
+    background-color: #BBE1FA;
+    color: #0f4c75;
+    /* font-family:'Parisienne'} */}
+.container{
+    height:100%;
+    width:100%;
+    position:absolute;
+
+}
+.form-box{
+
+    /* width:1020px; */
+    /* height:600px;  */
+    /* font-family:'Parisienne'; */
+    position : relative;
+    margin:2% auto;
+    /* margin-left:18%; */
+    /* background-color:#BBE1FA; */
+    /* margin-left:12%; */
+    /* box-shadow: 5px 5px 5px 5px rgba(68, 68, 68, 0.6); */
+    margin-top:10%;
+    border-radius: 30px;
+    
+}
+#wrapper-1 {
+
+    margin-left:10%;
+	float: left;
+}
+
+#vertLine {
+	width: 0px;
+	border: 1px solid #0f4c75 ;
+	height: 200px;
+	position: relative; /* I manually centered this since margin auto doesn't automatically place it */
+	left: 63%;
+}
+
+#wrapper-2 {
+    float: right;
+    margin-right:10%;
+
+	
+}
+
+.login{
+    text-align: center;
+
+}
+.txtb{
+    border-bottom: 2px solid #0f4c75;
+    position: relative;
+    margin: 15px 0;
+  }
+  
+.txtb input{
+    font-size: 14px;
+    color:#0f4c75;
+    border: none;
+    width: 100%;
+    outline: none;
+    background: none;
+     padding: 5px 5px; 
+    height: 19px;
+  }
+#logbtn{
+    /* display: block; */
+    width: 100px;
+    height: 40px;
+    border-radius:20%;
+    background: #0f4c75;
+    /* background-size: 200%; */
+    color: #fff;
+    outline: none;
+    
+    /* margin-left:80px; */
+    text-align:center;
+
+  }
+
+.center{
+    display: block;
+    position:relative;
+    margin-top: 2%;
+  margin-left: 56%;
+  margin-right: auto;
+  width: 13%;
+  
+}

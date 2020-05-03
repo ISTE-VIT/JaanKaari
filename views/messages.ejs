@@ -1,0 +1,19 @@
+<%- include("header"); -%>
+<form action="/uploadmessage" method="POST">
+    <h3>Type out your question..</h3>
+    <br>
+    <div class="form-group">
+        
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="question"></textarea>
+    </div>
+    <br>
+    <h3>Leave your name</h3>
+    <br>
+    <input class="form-control" type="text" name="by">
+    <br>
+    <button type="submit" class="btn btn-info">Submit</button>
+</form>
+
+
+
+<%- include("footer"); -%>

@@ -1,0 +1,11 @@
+<%- include("header"); -%>
+<h1><%= title %></h1>
+
+    <img src="./uploads/<%= picname %>" >
+    
+<p><%= postBody %></p>
+<br>
+<form action="/message" method="POST">
+    <button type="submit" class="btn btn-info">Leave a message</button>
+</form>
+<%- include("footer"); -%>

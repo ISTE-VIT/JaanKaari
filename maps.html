@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <title>Maps</title>
+        <style> html, body, #map {margin: 0;padding: 0;width: 100%;height: 100%;} </style>
+        <script src="https://apis.mapmyindia.com/advancedmaps/v1/v57fuux5bwfvzzaxbg1tsinvdkmw96vg/map_load?v=1.3"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body >
+        <button id="button">Click for nearby stores</button>
+        <div id="map"></div>;
+    <script type="text/javascript">
+        var marker = [];
+        var map=new MapmyIndia.Map("map",{ center:[17.4401, 78.3489],zoomControl: true,hybrid:true });
+        L.marker([17.4401, 78.3489]).addTo(map);
+        map.on("click", function (e) 
+        { 
+        var pt = e.latlng; 
+        alert(pt);
+        });
+        function addMarker(position,title) 
+        { 
+        var mk = new L.Marker(position,{title: title}); 
+        mk.addTo(map);
+        mk.bindPopup(title); 
+        // map.addLayer(mk);
+        mk.on("click", function (e) 
+        { 
+        mk.openPopup();
+        }); 
+        return mk;
+        }
+
+
+
+
+        //using xhr:
+
+    // document.getElementById("button").addEventListener("click",function(){
+    //     var xhr=new XMLHttpRequest();
+    //     xhr.open("GET","https://atlas.mapmyindia.com/api/places/nearby/json?keywords=groceries&refLocation=17.4401,78.3489&radius=1000",true);
+    //     xhr.setRequestHeader("Authorization", "bearer API KEY");
+    //     xhr.onload=function(){
+    //         if(this.status==200){
+    //             var t=JSON.parse(this.responseText);
+    //             console.log(t);
+    //         }
+    //     }
+    //     xhr.send();
+    // });
+
+        //using jquery:
+    var url = "https://atlas.mapmyindia.com/api/places/nearby/json?keywords=groceries&refLocation=17.4401,78.3489&radius=1000";
+    var auth = "bearer API KEY";
+    document.getElementById("button").addEventListener("click",function(){
+        $.ajax({
+            type: 'GET',
+            dataType: 'text',
+            url: url ,
+            headers: {
+                "Authorization" : auth
+            },
+            
+        }).done(function(response) {
+            // do something with the response, e.g. isolate the id of a linked resource   
+            console.log(response);
+        });
+    });
+
+       
+    </script>
+    </body>
+</html>

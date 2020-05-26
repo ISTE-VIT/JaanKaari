@@ -25,6 +25,7 @@ const upload= multer({
 
 
 router.use('/:id',express.static("./public")); 
+router.use('/',express.static("./public")); 
 
 router.get("/:id/blog",function(request,response){
     post.find({},function(err,foundtpost){
@@ -200,6 +201,62 @@ router.get("/:id/account",async function(request,response){
 })   
 
 });
+
+//subscribe
+
+router.post("/:id/subscribe",async(req,res) => {
+    var author_id=req.params.id;
+    
+    await MarioChar.findOne({_id:author_id}).then(user=>{
+        var author_name =  user.username
+        // console.log(author_name)
+    
+    console.log(author_id)
+    var d = new Date();
+    var date = d.getDate();
+    var month = d.getMonth() + 1;
+    var year = d.getFullYear();
+    var dateStr = date + "/" + month + "/" + year;
+
+    upload(req,res, async(err) => {
+        if(err){
+            res.render("dashboard",{
+                msg: err
+            });
+        }
+        else{
+             const newpost=await new post({
+                // _id:getNextSequence("userid"),
+                title: req.body.posttitle,
+                postBody: req.body.postbody,
+                update:  dateStr,
+                picname: req.file.filename,
+                 authorid: author_id,
+                 authorname:author_name,
+                 
+                
+               
+                
+            });
+            newpost.save(function(err){
+                if(!err)
+                {
+                   
+
+                res.redirect(`./account`);
+                }   else{
+                    console.log(err)
+                    };
+                
+             });  
+        }
+    });
+});
+   
+    
+}); 
+
+
 module.exports = router;
 
 

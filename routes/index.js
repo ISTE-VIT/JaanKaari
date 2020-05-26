@@ -7,10 +7,10 @@ const { ensureAuthenticated } = require('../config/auth');
 
 
 router.get('/',function(req,res){
-    res.render('welcome');
+    res.render('home');
 })
  router.get(`/dashboard`, ensureAuthenticated,function(req,res){
-     res.render('welcome',{user:req.user});
+     res.render('homedash',{user:req.user});
  })
 
 router.get('/store',ensureAuthenticated,function(req,res){
@@ -24,7 +24,7 @@ router.get("/blog",function(request,response){
             if(err)
             console.log(err);
             else
-            response.render("blog",{post: foundtpost});
+            response.render("bloguser",{post: foundtpost});
         });
     
 });

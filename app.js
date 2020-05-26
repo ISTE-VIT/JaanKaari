@@ -56,32 +56,17 @@ app.use('/',express.static(__dirname+"/public"))
 //connect to mongodb
 mongoose.set('useUnifiedTopology', true);
 mongoose.connect('mongodb://localhost/log',{ useNewUrlParser: true}).then(() => console.log('connected')).catch((err)=>console.log('err'));
-mongoose.connect("mongodb://localhost:27017/blog",{ useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex:true});    
+// mongoose.connect("mongodb://localhost:27017/blog",{ useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex:true});    
 
-// blog.collections("posts").counters.insert(
-//     {
-//        _id: "userid",
-//        seq: 0
-//     }
-//  )
-//  function getNextSequence(name) {
-//     var ret = blog.collections("posts").counters.findAndModify(
-//            {
-//              query: { _id: name },
-//              update: { $inc: { seq: 1 } },
-//              new: true
-//            }
-//     );
- 
-//     return ret.seq;
-//  }
+
 //routing
 
 app.use('/', require('./routes/index.js'));
 app.use('/', require('./routes/userlogin.js'));
-app.use('/user/:id',ensureAuthenticated, require('./routes/user.js'));
+ app.use('/user/:id',ensureAuthenticated, require('./routes/user.js'));
 app.use('/publisher/:id',ensureAuthenticated, require('./routes/publisher.js'));
 app.use('/publisher', ensureAuthenticated,require('./routes/blog.js'));
+
 
 
 app.listen(3000,console.log('Server is connected to 3000'))

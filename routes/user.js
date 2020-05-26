@@ -4,9 +4,10 @@ const post = require('../models/posts')
 const { ensureAuthenticated } = require('../config/auth');
 
 
+router.use('/',express.static("./public")); 
 
 router.get('/dashboard',function(req,res){
-    res.render('dashboard',{user:req.user});
+    res.render('homedash',{user:req.user});
 })
 
 router.get("/blog",function(request,response){
@@ -15,7 +16,7 @@ router.get("/blog",function(request,response){
             if(err)
             console.log(err);
             else
-            response.render("blog",{post: foundtpost});
+            response.render('bloguser',{post: foundtpost});
         });
     
 });
@@ -23,7 +24,7 @@ router.get("/blog",function(request,response){
 router.get("/post/:id",ensureAuthenticated,function(request,response){
     const search=request.params.id;
     post.findOne({_id: search},function(err,finditem){
-       response.render("posts",{title: finditem.title,postBody: finditem.postBody,picname: finditem.picname});
+       response.render("posts",{title: finditem.title,postBody: finditem.postBody,picname: finditem.picname,author:finditem.authorname});
     });
 });
 

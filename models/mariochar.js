@@ -4,6 +4,12 @@ const Schema = mongoose.Schema;
 
 //create Schema and model
 
+
+const SubscriberSchema = new Schema({
+  subscriberid: {
+    type : String,
+  }
+})
 const MarioCharSchema = new Schema({
   username: {
       type:String,
@@ -26,9 +32,12 @@ const MarioCharSchema = new Schema({
     type:Date,
     default:Date.now
   },  
-  
+  subscriber: [SubscriberSchema]
   
 });
+
+
+
 
 
 

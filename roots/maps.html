@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <title>Maps</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://apis.mapmyindia.com/advancedmaps/v1/v57fuux5bwfvzzaxbg1tsinvdkmw96vg/map_load?v=1.3"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style> 
+            html, body, #map {margin: 0;padding: 0;width: 100%;height: 100%;} 
+
+            @import url('https://fonts.googleapis.com/css?family=Raleway:200,100,400');
+
+    body {
+    font-family: 'Raleway', sans-serif;
+    height: 100vh;
+    background: #1b262c  no-repeat center center / cover;
+    color: #ccc;
+    
+    }
+    .bgimg{
+        background-image: url('storemap.png');
+        background-size:100% 100%;
+        background-attachment:fixed;
+        width:100%;
+        height:100%;
+        filter: blur(4px);
+        -webkit-filter: blur(4px);
+    
+
+    }
+    #map_button {
+        display: inline-block;
+        border-radius: 100%;
+        width: 4.5em;
+        height: 4.5em;
+        line-height: 4.5em;
+        text-align: center;
+        font-size: 1.25em;
+        padding: 0;
+    }
+
+    input[type="button"], input[type="submit"], input[type="reset"], button, .button {
+        position: relative;
+        display: inline-block;
+        background: #1b262c;
+        color: #fff;
+        text-align: center;
+        border-radius: 0.5em;
+        text-decoration: none;
+        padding: 0.65em 2em 0.65em 3em;
+        border: 0;
+        cursor: pointer;
+        outline: 0;
+        font-weight: 300;
+    
+    }
+
+    .bg-text {
+        
+        color: #1b262c; 
+        font-weight: bold;
+        border: 3px solid #1b262c;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        width: 50%;
+        padding: 20px;
+        text-align: center;
+    }
+    .active-cyan-2 input[type=text]:focus:not([readonly]) {
+        border-bottom: 1px solid #1b262c;
+        box-shadow: 0 1px 0 0 #1b262c;
+    }
+    .active-cyan input[type=text] {
+        border-bottom: 1px solid #1b262c;
+        box-shadow: 0 1px 0 0 #1b262c;
+    }
+    .active-cyan .fa, .active-cyan-2 .fa {
+        color: #1b262c;
+    }
+
+
+    
+    .inner {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .navbar-custom {
+        background-color: #1b262c  !important;}
+
+    .navbar-custom .navbar-brand {
+        color: #fff;
+        font-size: 25px;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+    
+    .navbar-custom .navbar-nav .active > .nav-link, .navbar-custom .navbar-nav .nav-link.active, .navbar-custom .navbar-nav .nav-link.show, .navbar-custom .navbar-nav .show > .nav-link {
+        color: #fff;
+    }
+    
+    .navbar-custom .navbar-nav .nav-link {
+        color: #fff;
+    }
+    
+    .navbar-toggler {
+        background: #fff ;
+    }
+    
+    .navbar-nav {
+        text-align: center;
+    }
+    
+    .nav-link {
+        padding: .2rem 1rem;
+    }
+    
+    .nav-link.active,.nav-link:focus{
+        color: #fff;
+    }
+    
+    .navbar-toggler {
+        padding: 1px 5px;
+        font-size: 18px;
+        line-height: 0.3;
+    }
+    
+    .navbar-custom .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+        color: #fff;
+    }
+    
+    /* types of stores */
+
+    .services{
+        padding:150px 0px 40px;
+        height:550px
+    } 
+    .row-setting{
+        margin:80px 0px !important;
+
+    }
+    .imgsetting{
+        border-radius:50%;
+        height:80px;
+        width:80px;
+
+    }
+    .fa-shopping-cart{
+        margin:20px;
+    }
+
+    .map{
+        padding:50px 0px 60px;
+    }
+
+    .card{
+        margin-right: auto;
+        margin-left: auto;
+        background-color: #ffffff;
+        color:#1b262c;
+    }
+    .card:hover{
+        box-shadow: 2px 2px 15px rgba(248, 225, 225, 0.562) !important;
+        }
+        .card{
+        box-shadow: 2px 2px 200px rgba(0, 0, 0, 0.5),
+                    10px 10px 15px rgba(0,0,0,0.5),
+                    -1px -1px 30px rgba(0,0,0,0.2)!important;
+        }
+        .ntable{
+            border: 2px solid rgb(255, 255, 255) !important;
+            box-shadow: 2px 2px 200px rgba(0, 0, 0, 0.5),
+                    10px 10px 15px rgba(0,0,0,0.5),
+                    -1px -1px 30px rgba(0,0,0,0.2)!important;
+        }
+        @media only screen and (max-width: 600px) {
+            html, body {
+                overflow-x: hidden;
+                        }
+            body{
+            margin: 0%;
+            background-color: #142850 !important;
+            position: relative;
+            }
+            .card{
+                margin-left: 40% !important;
+                margin-right: auto;
+                background-color: #fcf8e8 !important;
+            }
+            .services{
+                padding:150px 0px 40px;
+                height:650px
+            } 
+            .store{
+            margin-left: auto !important;
+            margin-right: auto !important;
+            }
+            .card.mb-3{
+            margin-left: 30% !important;
+            margin-right: auto !important;
+            max-width: 300px !important;
+            }
+            .card.text-center{
+            margin-left: 30% !important;
+            margin-right: auto !important;
+            max-width: 300px !important;
+            }
+            .card:hover{
+            box-shadow: 2px 2px 15px rgba(248, 225, 225, 0.562) !important;
+            }
+            .card{
+            box-shadow: 2px 2px 200px rgba(0, 0, 0, 0.5),
+                        10px 10px 15px rgba(0,0,0,0.5),
+                        -1px -1px 30px rgba(0,0,0,0.2)!important;
+            }
+        }    
+        @media only screen and (max-width: 500px) {
+            html, body {
+                overflow-x: hidden;
+                        }
+            body{
+            margin: 0%;
+            background-color: #1b262c !important;
+            position: relative;
+            }
+            .card{
+                margin-left: 30% !important;
+                margin-right: auto;
+                background-color: #fcf8e8 !important;
+            }
+            .services{
+                padding:150px 0px 40px;
+                height:650px
+            } 
+            
+            .store{
+            margin-left: auto !important;
+            margin-right: auto !important;
+            }
+            .card.mb-3{
+            margin-left: 20% !important;
+            margin-right: auto !important;
+            max-width: 300px !important;
+            }
+            .card.text-center{
+            margin-left: 20% !important;
+            margin-right: auto !important;
+            max-width: 300px !important;
+            }
+            
+            .card{
+            box-shadow: 2px 2px 200px rgba(0, 0, 0, 0.5),
+                        10px 10px 15px rgba(0,0,0,0.5),
+                        -1px -1px 30px rgba(0,0,0,0.2)!important;
+            }
+        } 
+        @media only screen and (max-width: 450px) {
+            html, body {
+                overflow-x: hidden;
+                        }
+            body{
+            margin: 0%;
+            background-color: #1b262c !important;
+            position: relative;
+            }
+            .card{
+                margin-left: 25% !important;
+                margin-right: auto;
+                background-color: #fcf8e8 !important;
+            }
+        
+            .store{
+            margin-left: auto !important;
+            margin-right: auto !important;
+            }
+            .card.mb-3{
+            margin-left: 15% !important;
+            margin-right: auto !important;
+            max-width: 300px !important;
+            }
+            .card.text-center{
+            margin-left: 15% !important;
+            margin-right: auto !important;
+            max-width: 300px !important;
+            }
+            
+            .card{
+            box-shadow: 2px 2px 200px rgba(0, 0, 0, 0.5),
+                        10px 10px 15px rgba(0,0,0,0.5),
+                        -1px -1px 30px rgba(0,0,0,0.2)!important;
+            }
+        } 
+        @media only screen and (max-width: 400px) {
+            html, body {
+                overflow-x: hidden;
+                        }
+            body{
+            margin: 0%;
+            background-color: #1b262c !important;
+            position: relative;
+            }
+            .card{
+                margin-left: 20% !important;
+                margin-right: auto;
+                background-color: #fcf8e8 !important;
+            }
+        
+            .store{
+            margin-left: auto !important;
+            margin-right: auto !important;
+            }
+            .card.mb-3{
+            margin-left: 10% !important;
+            margin-right: auto !important;
+            max-width: 300px !important;
+            }
+            .card.text-center{
+            margin-left: 10% !important;
+            margin-right: auto !important;
+            max-width: 300px !important;
+            }
+            
+            .card{
+            box-shadow: 2px 2px 200px rgba(0, 0, 0, 0.5),
+                        10px 10px 15px rgba(0,0,0,0.5),
+                        -1px -1px 30px rgba(0,0,0,0.2)!important;
+            }
+        }
+        @media only screen and (max-width: 350px) {
+            html, body {
+                overflow-x: hidden;
+                        }
+            body{
+            margin: 0%;
+            background-color: #142850 !important;
+            position: relative;
+            }
+            .card{
+                margin-left: 15% !important;
+                margin-right: auto;
+                background-color: #fcf8e8 !important;
+            }
+        
+            .store{
+            margin-left: auto !important;
+            margin-right: auto !important;
+            }
+            .card.mb-3{
+            margin-left: 5% !important;
+            margin-right: auto !important;
+            max-width: 300px !important;
+            }
+            .card.text-center{
+            margin-left: 5% !important;
+            margin-right: auto !important;
+            max-width: 300px !important;
+            }
+            
+            .card{
+            box-shadow: 2px 2px 200px rgba(0, 0, 0, 0.5),
+                        10px 10px 15px rgba(0,0,0,0.5),
+                        -1px -1px 30px rgba(0,0,0,0.2)!important;
+            }
+        }     
+        @media only screen and (max-width: 300px) {
+            html, body {
+                overflow-x: hidden;
+                        }
+            body{
+            margin: 0%;
+            background-color: #1b1b1b !important;
+            position: relative;
+            }
+            .card{
+                margin-left: 10% !important;
+                margin-right: auto;
+                background-color: #fcf8e8 !important;
+            }
+            
+            .store{
+            margin-left: auto !important;
+            margin-right: auto !important;
+            }
+            .card.mb-3{
+            margin-left: 0% !important;
+            margin-right: auto !important;
+            max-width: 300px !important;
+            }
+            .card.text-center{
+            margin-left: 0% !important;
+            margin-right: auto !important;
+            max-width: 300px !important;
+            }
+            .card{
+            box-shadow: 2px 2px 200px rgba(0, 0, 0, 0.5),
+                        10px 10px 15px rgba(0,0,0,0.5),
+                        -1px -1px 30px rgba(0,0,0,0.2)!important;
+            }
+    }          
+        </style>
+    </head>
+    <body >
+        <div class="bgimg"></div>
+    <div class="bg-text">
+        
+      <div class="inner">
+        <header>
+            <h1><b>Find Stores Near Me!</b></h1>
+            <div class="search">
+                <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" id="add"
+                  aria-label="Search" autocomplete="off">
+                  <br>
+            <button id="button" onclick="getInputValue();" class="btn btn-light" >Location</button>
+            <br>
+            <br>
+            <button id="stores" class="btn btn-light">Click for locating nearby stores</button>   
+        </div>  
+        </header>
+        <br>
+        <footer>
+            <a id="map_button" href="#" class="button circled " onclick="">
+            <img src="https://icon2.cleanpng.com/20180401/qhe/kisspng-map-computer-icons-flat-design-location-logo-5ac19a94752066.1834508515226374604798.jpg"style=" border-radius: 100%;
+            width: 4.5em;
+            height: 4.5em;line-height: 4.5em;"></a>
+        </footer>
+    </div>
+        
+    </div>
+    
+    <div id="map"></div>;
+        <!-- <input type="text"  id="add" placeholder="address"> -->
+        <!-- <br>
+        <button id="button" onclick="getInputValue();" >Location</button>
+        <br>
+        <button id="stores">Click for locating nearby stores</button>
+        <div id="map"></div>; -->
+    <script >
+
+
+        function getMap(lat,long)
+        {
+        var marker = [];
+        let coords=[lat,long];
+        var map=new MapmyIndia.Map("map",{ center: coords,zoomControl: true,hybrid:true });
+
+        function addMarker(position,title) 
+        { 
+        var mk = new L.Marker(position,{title:title}); 
+        mk.addTo(map);
+        mk.bindPopup(title); 
+        // map.addLayer(mk);
+        mk.on("click", function (e) 
+        { 
+        mk.openPopup();
+        }); 
+        return mk;
+        }
+
+
+
+
+        //using xhr:
+
+    document.getElementById("stores").addEventListener("click",function(){
+        var xhr=new XMLHttpRequest();
+        xhr.open("GET","https://api.tomtom.com/search/2/categorySearch/grocery store.JSON?key=APIKEY&lat="+lat+"&lon="+long,true);
+        xhr.onload=function(){
+            if(this.status==200){
+                var t=JSON.parse(this.responseText);
+                for(var i=0;i<t.results.length;i++)
+                {
+                    let position=[t.results[i].position.lat,t.results[i].position.lon];
+                    let title="<strong>"+t.results[i].poi.name+"</strong>"+"<br>"+t.results[i].address.freeformAddress;
+                    addMarker(position,title);
+                }
+            }
+        }
+        xhr.send();
+    });
+
+        }
+
+
+        function getInputValue(){
+            var inputVal = document.getElementById("add").value;
+            console.log(inputVal);
+
+            var xhr=new XMLHttpRequest();
+            xhr.open("GET","https://www.mapquestapi.com/geocoding/v1/address?location="+inputVal+"&key=APIKEY",true);
+            xhr.onload=function(){
+                if(this.status==200){
+                    var t=JSON.parse(this.responseText);
+                    let lat=t.results[0].locations[0].latLng.lat;
+                    let long=t.results[0].locations[0].latLng.lng; 
+                    getMap(lat,long)
+                }
+            }
+            xhr.send();
+        }
+        
+        // L.marker([17.4401, 78.3489]).addTo(map);
+        // map.on("click", function (e) 
+        // { 
+        // var pt = e.latlng; 
+        // alert(pt);
+        // });
+       
+
+
+       
+    </script>
+    </body>
+</html>

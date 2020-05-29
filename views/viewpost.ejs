@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/viewpage.css"/>
+    <link rel="icon" href="/assets/img/jankari white.png">
+    <link rel="stylesheet" href="/assets/css/nav.css">
+    <meta charset="utf-8">
+    <title>
+      blog view
+    </title>
+  </head>
+
+
+  <body>
+    <div id="top"></div>
+   
+    <br><br><br><br><br>
+
+<div class="container" style="align:center">
+<div class="row justify-content-center" style="border: solid black; padding:12px">
+  <div class="col-12">
+    <div class="media ">
+          <img src="/assets/img/doctor.png" class="align-self-center mr-5" alt="blogger" style="width:10% ; height:auto">
+          <div class="media-body">
+            <h3 class="mt-0" style="font-family:verdana;font-weight:bold"><%= author %></h3> <br>
+            <button type="button" class="btn" style="background-color:black;border-radius:16px;color:white">Follow</button>
+  </div>
+ 
+
+
+</div><br><br><br>
+</div>
+</div>
+
+
+
+<br><br><hr><br><br>
+
+ 
+
+  <div class="row my-row">
+    <div class="col-10">
+      <h2><%= title %> </h2><br>
+      <p><%= postBody %></p>
+           <p>~<%= author %></p>
+    </div>
+
+  </div>
+  </div><br><br><br>
+  <div class="container">
+ <div class="row justify-content-start my-image">
+   <div class="col-10 " >
+     <img src="/uploads/<%= picname %>"  width="750" height="500" style="border-radius:5px;margin-left:165px" alt="pic not loaded">
+   </div>
+ </div>
+</div>
+ <br><br><br>
+
+
+
+
+<br><br><br>
+
+
+  <br><br>
+
+  <p class="lead">
+    <a class="btn  btn-lg" style="background-color:black;border-radius:16px;color:white" href="#top" role="button">
+      Back to top</a>
+  </p>
+</div>
+
+<hr style="border-width: 2px;">
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-2">
+        <img src="/assets/img/jankari black.png" width="200" height="140" alt="jankari">
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-3" style="text-align:right">
+        <p>Contact :</p>
+      </div>
+      <div class="col-3">
+        <p>+91 9875635234</p>
+      </div>
+    </div>
+
+      <div class="row justify-content-center">
+        <div class="col-3" style="text-align:right">
+          <p>Email Id :</p>
+        </div>
+        <div class="col-3">
+          <p>jankari_is_for_all@abc.com</p>
+        </div>
+
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-3" style="text-align:right">
+        <p>Address :</p>
+      </div>
+      <div class="col-3">
+        <p>Vellore Institute Of Technology</p>
+      </div>
+  </div>
+</div>
+
+  </body>
+</html>

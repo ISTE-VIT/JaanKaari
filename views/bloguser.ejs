@@ -56,7 +56,7 @@
       </header>
 
       <br><br><br><br>
-
+     
       <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
         <div class="col-md-6 px-0">
           <h1 class="display-4 font-italic">Title of a longer featured blog post</h1>
@@ -75,7 +75,7 @@
                 <a class="text-dark" href="#"> <%= post[t].title %></a>
                 
               </h3>
-              <p><i>By <%= post[t].authorname %></i></p>
+              <p><i><a href="./<%= post[t].authorid %>/account">By <%= post[t].authorname %></a></i></p>
               <div class="mb-1 text-muted"><%= post[t].update %></div>
               
               
@@ -83,7 +83,7 @@
               <p class="card-text mb-auto"><%= post[t].postBody.substring(0,100) %> <a href="./post/<%= post[t]._id %>">Read More</a> </p>
             </div>
             <div class="col-md-4">
-              <img src="./uploads/<%= post[t].picname %>" class="card-img" alt="...">
+              <img src="./uploads/<%= post[t].picname %>" class="card-img" alt="..." style="width:100%; height:50% ;margin-top: 30%;">
             </div>
     
           </div>

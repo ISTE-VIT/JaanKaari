@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://apis.mapmyindia.com/advancedmaps/v1/v57fuux5bwfvzzaxbg1tsinvdkmw96vg/map_load?v=1.3"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <title>Corona</title>
+  <style> 
+     #map {margin: 0;padding: 0;width: 100%;height: 100%;}
+    </style>
+</head>
+<body>
+    <div class="bgimg"></div>
+    <div class="bg-text">
+        
+      <div class="inner">
+        <header>
+            <h1><b>Find Stores Near Me!</b></h1>
+            <div class="search">
+                <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" id="add"
+                  aria-label="Search" autocomplete="off">
+                  <br>
+            <button id="button" onclick="getInputValue();" class="btn btn-light" >Location</button>
+            <br>
+            <br>
+            <button id="stores" class="btn btn-light">Click for locating nearby stores</button>   
+        </div>  
+        </header>
+        <footer>
+            <a id="map_button" href="#" class="button circled " onclick="">
+            <img src="./assets/img/pin.img" style=" border-radius: 100%;
+            width: 4.5em;
+            height: 4.5em;line-height: 4.5em;"></a>
+        </footer>
+    </div>
+        
+    </div>
+       <div  class="head" >
+      
+    <nav class="navbar navbar-expand-lg navbar-custom bg-primary fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="#" style="color:white">JAANKARI</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item ">
+                <a class="nav-link" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="#">Stores near me</a>
+              </li>
+              <li class="nav-item" >
+                <a class="nav-link" href="#">Blogs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contribute</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Login/Signup</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+       </div>
+    
+    <div id="map"></div>;
+        <!-- <input type="text"  id="add" placeholder="address"> -->
+        <!-- <br>
+        <button id="button" onclick="getInputValue();" >Location</button>
+        <br>
+        <button id="stores">Click for locating nearby stores</button>
+        <div id="map"></div>; -->
+    <script >
+
+
+        function getMap(lat,long)
+        {
+        var marker = [];
+        let coords=[lat,long];
+        var map=new MapmyIndia.Map("map",{ center: coords,zoomControl: true,hybrid:true });
+
+        function addMarker(position,title) 
+        { 
+        var mk = new L.Marker(position,{title:title}); 
+        mk.addTo(map);
+        mk.bindPopup(title); 
+        // map.addLayer(mk);
+        mk.on("click", function (e) 
+        { 
+        mk.openPopup();
+        }); 
+        return mk;
+        }
+
+
+
+
+        //using xhr:
+
+    document.getElementById("stores").addEventListener("click",function(){
+        var xhr=new XMLHttpRequest();
+        xhr.open("GET","https://api.tomtom.com/search/2/categorySearch/grocery store.JSON?key=APIKEY&lat="+lat+"&lon="+long,true);
+        xhr.onload=function(){
+            if(this.status==200){
+                var t=JSON.parse(this.responseText);
+                for(var i=0;i<t.results.length;i++)
+                {
+                    let position=[t.results[i].position.lat,t.results[i].position.lon];
+                    let title="<strong>"+t.results[i].poi.name+"</strong>"+"<br>"+t.results[i].address.freeformAddress;
+                    addMarker(position,title);
+                }
+            }
+        }
+        xhr.send();
+    });
+
+        }
+
+
+        function getInputValue(){
+            var inputVal = document.getElementById("add").value;
+            console.log(inputVal);
+
+            var xhr=new XMLHttpRequest();
+            xhr.open("GET","https://www.mapquestapi.com/geocoding/v1/address?location="+inputVal+"&key=APIKEY",true);
+            xhr.onload=function(){
+                if(this.status==200){
+                    var t=JSON.parse(this.responseText);
+                    let lat=t.results[0].locations[0].latLng.lat;
+                    let long=t.results[0].locations[0].latLng.lng; 
+                    getMap(lat,long)
+                }
+            }
+            xhr.send();
+        }
+        
+        // L.marker([17.4401, 78.3489]).addTo(map);
+        // map.on("click", function (e) 
+        // { 
+        // var pt = e.latlng; 
+        // alert(pt);
+        // });
+       
+
+
+       
+    </script>
+    </body>
+</html>

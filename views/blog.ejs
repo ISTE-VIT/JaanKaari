@@ -73,7 +73,7 @@
       </div>
 
       <div class="row mb-2">
-        <% for(var t=0;t<post.length;t++){ %>
+        <% for(var t=0 ;t<post.length;t++){ %>
         <div class="col-md-6">
           <div class="card flex-md-row mb-4 box-shadow h-md-240">
             <div class="card-body d-flex flex-column align-items-start">
@@ -90,7 +90,7 @@
               <p class="card-text mb-auto"><%= post[t].postBody.substring(0,100) %> <a href="./post/<%= post[t]._id %>">Read More</a> </p>
             </div>
             <div class="col-md-4">
-              <img src="./uploads/<%= post[t].picname %>" class="card-img" alt="...">
+              <img src="./uploads/<%= post[t].picname %>" class="card-img" alt="..." style="width:100%; height:50% ;margin-top: 30%;">
             </div>
     
           </div>

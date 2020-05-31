@@ -38,16 +38,12 @@
           </nav>
         <centre>
             <div class="card" style="width: 14rem; height:500px; margin-top: 10%;">
-                <img src="./assets/images/image3.png" class="card-img-top" alt="...">
+                <img src="/assets/img/doctor.png" class="card-img-top" alt="...">
                 <div class="card-body" style="background-color: #eae7d9 !important;">
-                  <h5 class="card-title" style="background-color: #eae7d9 !important;">Doctor Name</h5>
+                  <h5 class="card-title" style="background-color: #eae7d9 !important;"><%= docname %></h5>
                   <p class="card-text"style="background-color: #eae7d9 !important;">Qualifications or specialization of doctor</p>
                 </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item" style="background-color: #eae7d9 !important;">Hospital,City</li>
-                  <li class="list-group-item" style="background-color: #eae7d9 !important;">Phone number</li>
-                  <li class="list-group-item" style="background-color: #eae7d9 !important;">Email</li>
-                </ul>
+      
               </div>
               <br>
               <table>
@@ -83,7 +79,7 @@
                 <div class="card mb-3" style="max-width: 700px;">
                     <div class="row no-gutters">
                       <div class="col-md-4">
-                        <img src="./uploads/<%= post[t].picname %>" class="card-img" alt="...">
+                        <img src="./uploads/<%= post[t].picname %>" class="card-img" alt="..." style="width:100%; height:100%"> 
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">

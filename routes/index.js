@@ -17,15 +17,9 @@ router.get('/store',ensureAuthenticated,function(req,res){
     res.render('store');
 })
 //blogs part
-router.get("/blog",function(request,response){
-    
-    post.find({},function(err,foundtpost){
-        
-            if(err)
-            console.log(err);
-            else
-            response.render("bloguser",{post: foundtpost});
-        });
+router.get("/blog", async (req,res)=>{
+    const foundpost=await post.find().sort({update: 'desc'})
+    res.render('bloguser',{post: foundpost})
     
 });
 router.get("/post/:id",ensureAuthenticated,function(request,response){

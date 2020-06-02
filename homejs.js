@@ -19,6 +19,7 @@ async function  getdata(){
             delete statewise[i].migrated
             delete statewise[i].statecode
             delete statewise[i].statenotes
+            delete statewise[i].migratedother
 
             for (var key in statewise[i]) {
                 if (col.indexOf(key) === -1) {

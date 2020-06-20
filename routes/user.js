@@ -10,18 +10,23 @@ router.get('/dashboard',function(req,res){
     res.render('homedash',{user:req.user});
 })
 
-router.get("/blog", async (req,res)=>{
-    const foundpost=await post.find().sort({update: 'desc'})
-    res.render('bloguser',{post: foundpost})
-    
-});
-
 
 router.get("/post/:id",ensureAuthenticated,function(request,response){
     const search=request.params.id;
     post.findOne({_id: search},function(err,finditem){
-       response.render("viewpost",{title: finditem.title,postBody: finditem.postBody,picname: finditem.picname,author:finditem.authorname});
+       response.render("posts",{title: finditem.title,postBody: finditem.postBody,picname: finditem.picname,author:finditem.authorname});
     });
+});
+
+router.get("/blog",function(request,response){
+    post.find({},function(err,foundtpost){
+        
+            if(err)
+            console.log(err);
+            else
+            response.render("bloguser",{post: foundtpost});
+        });
+    
 });
 
 

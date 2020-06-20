@@ -7,7 +7,11 @@
 body{
     font-family: 'Poppins', sans-serif;
 	overflow: hidden;
-	
+	background:#1b262c;
+}
+
+p{
+	color:#d9d9d9;
 }
 
   
@@ -93,7 +97,7 @@ form{
 
 .login-content h2{
 	margin: 15px 0;
-	color: #333;
+	color: #d9d9d9;
 	text-transform: uppercase;
 	font-size: 2.9rem;
 }

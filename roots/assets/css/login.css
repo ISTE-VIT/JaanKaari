@@ -6,7 +6,12 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    overflow: hidden;
+	overflow: hidden;
+	background:#1b262c;
+}
+
+p{
+	color:#d9d9d9;
 }
 
 .wave{
@@ -53,7 +58,7 @@ form{
 
 .login-content h2{
 	margin: 15px 0;
-	color: #333;
+	color: #d9d9d9;
 	text-transform: uppercase;
 	font-size: 2.9rem;
 }
@@ -139,7 +144,7 @@ form{
 	background: none;
 	padding: 0.5rem 0.7rem;
 	font-size: 1.2rem;
-	color: #555;
+	color: #d9d9d9;
 	font-family: 'poppins', sans-serif;
 }
 

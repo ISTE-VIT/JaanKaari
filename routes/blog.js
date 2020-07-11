@@ -67,9 +67,6 @@ router.post("/:id/compose",async(req,res) => {
                 picname: req.file.filename,
                  authorid: author_id,
                  authorname:author_name,
-                 
-                
-               
                 
             });
             newpost.save(function(err){

@@ -59,7 +59,6 @@ mongoose.connect('mongodb://localhost/log',{ useNewUrlParser: true}).then(() => 
 // mongoose.connect("mongodb://localhost:27017/blog",{ useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex:true});    
 
 
-//routing
 
 app.use('/', require('./routes/index.js'));
 app.use('/', require('./routes/userlogin.js'));
@@ -69,4 +68,4 @@ app.use('/publisher', ensureAuthenticated,require('./routes/blog.js'));
 
 
 
-app.listen(3000,console.log('Server is connected to 3000'))
+app.listen(5000,console.log('Server is connected to 5000'))

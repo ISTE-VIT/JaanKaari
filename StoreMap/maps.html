@@ -24,14 +24,15 @@
             <h1><b>Find Stores Near Me!</b></h1>
             <div class="search">
                 <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" id="add"
-                  aria-label="Search" autocomplete="off">
+                  aria-label="Search" autocomplete="off" style="margin-left: 45px !important;">
                   <br>
-            <button id="button" onclick="getInputValue();" class="btn btn-light" >Location</button>
+            <button id="button" onclick="getInputValue();" class="btn btn-dark" >Location</button>
             <br>
             <br>
-            <button id="stores" class="btn btn-light" ><a href="#map">Click for locating nearby stores</a></button>   
+            <button id="stores" class="btn btn-dark" style="color: white !important;" onclick="goTo()">Click for locating nearby stores</button>   
         </div>  
         </header>
+        <br>
         <footer>
             <a id="map_button" href="#" class="button circled " onclick="">
             <img src="./assets/img/pin.img" style=" border-radius: 100%;
@@ -61,11 +62,11 @@
               <li class="nav-item" >
                 <a class="nav-link" href="#">Blogs</a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link" href="#">Contribute</a>
-              </li>
+              </li> -->
               <li class="nav-item">
-                <a class="nav-link" href="#">Login/Signup</a>
+                <a class="nav-link" href="#">Account</a>
               </li>
             </ul>
           </div>
@@ -86,6 +87,10 @@
 
                   </div>
     <script async >
+      function goTo()
+      {
+        window.location.href="#map";
+      }
 
 
         function getMap(lat,long)
@@ -144,7 +149,7 @@
 
     document.getElementById("stores").addEventListener("click",function(){
         var xhr=new XMLHttpRequest();
-        xhr.open("GET","https://api.tomtom.com/search/2/categorySearch/grocery store.JSON?key=APIKEY&lat="+lat+"&lon="+long,true);
+        xhr.open("GET","https://api.tomtom.com/search/2/categorySearch/grocery store.JSON?key=tOfdDcItmcJUqbRnmMAUjjzIAFXoWlZN&lat="+lat+"&lon="+long,true);
         xhr.onload=function(){
             if(this.status==200){
                 var t=JSON.parse(this.responseText);
@@ -169,7 +174,7 @@
             console.log(inputVal);
 
             var xhr=new XMLHttpRequest();
-            xhr.open("GET","https://www.mapquestapi.com/geocoding/v1/address?location="+inputVal+"&key=APIKEY",true);
+            xhr.open("GET","https://www.mapquestapi.com/geocoding/v1/address?location="+inputVal+"&key=NcG27UZidqWrA2IF3KgfrprI0enJ34aK",true);
             xhr.onload=function(){
                 if(this.status==200){
                     var t=JSON.parse(this.responseText);

@@ -5,7 +5,7 @@ const { ensureAuthenticated } = require('../config/auth');
 
 
 router.use('/',express.static("./public")); 
-
+router.use('/',express.static(__dirname+"/roots"));
 router.get('/dashboard',function(req,res){
     res.render('homedash',{user:req.user});
 })

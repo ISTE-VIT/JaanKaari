@@ -1,5 +1,6 @@
 <%- include("header"); -%>
 
+<div class="container">
 
 <form action="./updatedpost" method="POST" enctype="multipart/form-data" >
     
@@ -19,6 +20,7 @@
     <br>
     <button  class="btn btn-primary"  onChange="this.form.submit()" name="updatepost" value="<%= post.title %>">Update</button>
 </form>
+</div>
     <br>
     <br>
     

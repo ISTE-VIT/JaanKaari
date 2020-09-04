@@ -1,0 +1,70 @@
+@font-face {
+  src: url('../fonts/Poppins/Poppins-Regular.ttf');
+  font-family: Poppins;
+}
+@font-face {
+  font-family: 'PoppinsBlack';
+  src: url("../fonts/Poppins/Poppins-Black.ttf");
+}
+
+@font-face {
+  font-family: 'PoppinsBold';
+  src: url("../fonts/Poppins/Poppins-Bold.ttf");
+}
+
+@font-face {
+  font-family: 'PoppinsSemiBold';
+  src: url("../fonts/Poppins/Poppins-SemiBold.ttf");
+}
+
+body{
+  background: #1b262c;
+  font-family: Poppins;
+  }
+
+.navbar-custom {
+    background-color: #1b262c  !important;}
+
+ .navbar-custom .navbar-brand {
+    color: #fff;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+  
+  .navbar-custom .navbar-nav .active > .nav-link, .navbar-custom .navbar-nav .nav-link.active, .navbar-custom .navbar-nav .nav-link.show, .navbar-custom .navbar-nav .show > .nav-link {
+    color: #fff;
+  }
+  
+  .navbar-custom .navbar-nav .nav-link {
+    color: #fff;
+  }
+  
+  .navbar-toggler {
+    background: #fff ;
+  }
+  
+  .navbar-nav {
+    text-align: center;
+  }
+  
+  .nav-link {
+    padding: .2rem 1rem;
+  }
+  
+  .nav-link.active,.nav-link:focus{
+    color: #fff;
+  }
+  
+  .navbar-toggler {
+    padding: 1px 5px;
+    font-size: 18px;
+    line-height: 0.3;
+  }
+  
+  .navbar-custom .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: #fff;
+  }
+
+  

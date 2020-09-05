@@ -1,0 +1,87 @@
+@font-face {
+  src: url('../fonts/Poppins/Poppins-Regular.ttf');
+  font-family: Poppins;
+}
+@font-face {
+  font-family: 'PoppinsBlack';
+  src: url("../fonts/Poppins/Poppins-Black.ttf");
+}
+
+@font-face {
+  font-family: 'PoppinsBold';
+  src: url("../fonts/Poppins/Poppins-Bold.ttf");
+}
+
+@font-face {
+  font-family: 'PoppinsSemiBold';
+  src: url("../fonts/Poppins/Poppins-SemiBold.ttf");
+}
+
+body{
+  background-color:white;
+  font-family:Poppins;
+}
+
+.profile-pic{
+  border-image-width: 1px;
+  border: white solid;
+  border-radius: 50px;
+  color:white;
+
+}
+
+.my-bar{
+ background-color:#141414;
+ height: 55px;
+
+
+
+}
+
+.navitem{
+  color:white;
+  font-weight: normal;
+  font-size: 19px;
+}
+
+.but{
+background-color: #ddf796;
+border-radius: 15px;
+}
+
+.form-control{
+  border-radius: 15px;
+}
+
+
+.my-row{
+  margin-left: 150px;
+  background-color: white;
+  border-left: 4px solid #393e46;
+
+
+}
+
+.normal-link{
+  font-family:Georgia;
+  color:inherit;
+}
+
+p{
+  font-family:verdana;
+}
+
+
+.link:hover{
+
+  opacity:0.7;
+}
+
+
+
+
+
+.my-image img {
+    max-width: 100%;
+
+}

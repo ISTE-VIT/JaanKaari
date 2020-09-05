@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <title>Doctor View</title> -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="/assets/css/docview.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-custom bg-primary fixed-top">
+            <div class="container">
+              <a class="navbar-brand" href="#" style="color:white">JAANKARI</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+          
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item ">
+                    <a class="nav-link" href="./dashboard">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="./store">Stores near me</a>
+                  </li>
+                  <li class="nav-item" >
+                    <a class="nav-link" href="./blog">Blogs</a>
+                  </li>
+                 
+                  <li class="nav-item">
+                    <a class="nav-link" href="/login">Login/Signup</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        <centre>
+            <div class="card" style="width: 14rem; height:500px; margin-top: 10%;">
+                <img src="/assets/img/doctor.png" class="card-img-top" alt="...">
+                <div class="card-body" style="background-color: #eae7d9 !important;">
+                  <h5 class="card-title" style="background-color: #eae7d9 !important;"><%= docname %></h5>
+                  <p class="card-text"style="background-color: #eae7d9 !important;">Qualifications or specialization of doctor</p>
+                </div>
+      
+              </div>
+              <br>
+              <table>
+                  <tr>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                            <a href="./compose" style="color: white;">New Blog</a>
+                          </button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                            <a href="#blog" style="color: white;">Recent Blogs</a>
+                          </button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                            <a href="#FAQ" style="color: white;">Messages</a>
+                          </button>
+                      </td>
+                  </tr>
+              </table>
+              <br>
+              <hr style="color: white;">
+              <br>
+              <div class="blog" id="blog">
+                <br>
+                <h2 style="text-align: center; color: white;">Blog Posts</h2>
+                <br>
+                <% for(var t=0;t<post.length;t++){ %>
+                   
+                    
+                    
+                <div class="card mb-3" style="max-width: 700px;">
+                    <div class="row no-gutters">
+                      <div class="col-md-4">
+                        <img src="./uploads/<%= post[t].picname %>" class="card-img" alt="..." style="width:100%; height:100%"> 
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                            
+                          <h5 class="card-title"><%= post[t].title %></h5>
+                          <p><i>By <%= post[t].authorname %></i></p>
+                          <p class="card-text"><%= post[t].postBody.substring(0,100) %> <a href="./post/<%= post[t]._id %>">Read More</a></p>
+                          <p class="card-text"><small class="text-muted"><%= post[t].update %></small></p>
+
+                          <div class="row" >
+                            <form action="./updatepost" method="post">
+                              <button  onChange="this.form.submit()" name="updatepost" value="<%= post[t].title %>" style="display:inline-block" class="btn btn-primary">Update</button><br><br>
+                              </form>
+                          <form action="./delpost" method="POST">
+                          <button  onChange="this.form.submit()" name="delpost" value="<%= post[t].title %>" class="btn btn-primary" style="display:inline-block">Delete</button>
+                          </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                   <% } %>  
+              </div>
+              <br>
+              <hr style="color: white;">
+              <br>
+              <div id="FAQ"></div>
+              <h2 style="text-align: center; color: white;">FAQ's by public</h2>
+              <br>
+              <div class="card text-center"  style="width: 550px;">
+                <div class="card-header">
+                  Featured
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Question 1</h5>
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+                    Answer
+                  </button>
+                  <div class="collapse" id="collapseExample1">
+                    <div class="card card-body">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="max-width: 500px;" placeholder="Description"></textarea>
+                        <button type="submit" class="btn btn-primary newblog" data-toggle="button" aria-pressed="false" autocomplete="off" style="margin-left: auto; margin-right: auto;">Post</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <br>
+            <hr style="color: white !important;">
+            <br>
+        </centre>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>

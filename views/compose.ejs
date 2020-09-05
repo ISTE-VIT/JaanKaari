@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+			
+  <style>
+    body{
+      color:#eee;
+    }
+  </style>
+  <link rel="stylesheet" href="/assets/css/nav.css">
+  <title>Contribute</title>
+</head>
+<body>
+ 
+  <nav class="navbar navbar-expand-lg navbar-custom bg-primary fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#" style="color:white">JAANKARI</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ">
+            <a class="nav-link" href="./dashboard">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="./store">Stores near me</a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link" href="./blog">Blogs</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login/Signup</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<br><br><br><br><br>
+<div class="container">
+<form action="./compose" method="POST" enctype="multipart/form-data">
+    
+    <h3>Title</h3>
+    <br>
+    <input class="form-control" type="text" name="posttitle">
+    <h3>Post</h3>
+    <div class="form-group">
+        
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="postbody"></textarea>
+      </div>
+    
+    <br>
+    <h3>Image upload</h3>
+    <br>
+    <input type="file" accept="image/*" name="postphoto" >
+  <button type="submit" class="btn btn-primary" >Post</button>
+</form>
+</div>
+    <br>
+    <br>
+    
+<%- include("footer"); -%>

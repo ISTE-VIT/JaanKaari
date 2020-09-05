@@ -62,11 +62,11 @@
               <li class="nav-item" >
                 <a class="nav-link" href="#">Blogs</a>
               </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="#">Contribute</a>
-              </li> -->
               <li class="nav-item">
-                <a class="nav-link" href="#">Account</a>
+                <a class="nav-link" href="#">Contribute</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Login/Signup</a>
               </li>
             </ul>
           </div>
@@ -165,26 +165,3 @@
         }
         xhr.send();
     });
-
-        }
-
-
-        function getInputValue(){
-            var inputVal = document.getElementById("add").value;
-            console.log(inputVal);
-
-            var xhr=new XMLHttpRequest();
-            xhr.open("GET","https://www.mapquestapi.com/geocoding/v1/address?location="+inputVal+"&key=NcG27UZidqWrA2IF3KgfrprI0enJ34aK",true);
-            xhr.onload=function(){
-                if(this.status==200){
-                    var t=JSON.parse(this.responseText);
-                    let lat=t.results[0].locations[0].latLng.lat;
-                    let long=t.results[0].locations[0].latLng.lng; 
-                    getMap(lat,long)
-                }
-            }
-            xhr.send();
-        }
-    </script>
-    </body>
-</html>

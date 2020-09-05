@@ -1,0 +1,27 @@
+<%- include("header"); -%>
+
+<div class="container">
+
+<form action="./updatedpost" method="POST" enctype="multipart/form-data" >
+    
+    <h3>Title</h3>
+    <br>
+    <input class="form-control" type="text" name="posttitle" value=" <%= post.title %>">
+    <h3>Post</h3>
+    <div class="form-group">
+        
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="postbody"><%= post.postBody %></textarea>
+      </div>
+    
+    <br>
+    <h3>Image upload</h3>
+    <br>
+    <input type="file" accept="image/*" name="postphoto" value="<%= post.picname %>" >
+    <br>
+    <button  class="btn btn-primary"  onChange="this.form.submit()" name="updatepost" value="<%= post.title %>">Update</button>
+</form>
+</div>
+    <br>
+    <br>
+    
+<%- include("footer"); -%>

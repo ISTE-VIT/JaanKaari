@@ -30,7 +30,10 @@ const postsSchema =new mongoose.Schema({
     authorname:{
         type:String,
     
-    }
+    },
+    authorEmail:{
+        type:String,
+    },
 
 })
 

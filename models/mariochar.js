@@ -6,10 +6,11 @@ const Schema = mongoose.Schema;
 
 
 const SubscriberSchema = new Schema({
-  subscriberid: {
+  subscriber: {
     type : String,
   }
 })
+const Subscriber=mongoose.model("Subscriber",SubscriberSchema);
 const MarioCharSchema = new Schema({
   username: {
       type:String,
@@ -44,4 +45,4 @@ const MarioCharSchema = new Schema({
 const MarioChar = mongoose.model('mariochar',MarioCharSchema);
  //this tells that "mariochar" is a colletion, "MarioChar" is the model and schema of the model is MarioCharSchema.
 
- module.exports = MarioChar; //so that we can use this in all the files in this project
+ module.exports = {MarioChar,Subscriber}; //so that we can use this in all the files in this project

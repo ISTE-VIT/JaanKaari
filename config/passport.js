@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 //use modals
-const MarioChar = require('../models/mariochar');
+const {MarioChar,Subscriber}=require("../models/mariochar");
 
 module.exports=function(passport){
     passport.use(

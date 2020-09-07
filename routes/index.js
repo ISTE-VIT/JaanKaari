@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const post = require('../models/posts')
-const MarioChar = require('../models/mariochar');
 const { ensureAuthenticated } = require('../config/auth');
 
 
@@ -25,7 +24,7 @@ router.get("/blog", async (req,res)=>{
 router.get("/post/:id",ensureAuthenticated,function(request,response){
     const search=request.params.id;
     post.findOne({_id: search},function(err,finditem){
-       response.render("posts",{title: finditem.title,postBody: finditem.postBody,picname: finditem.picname,author:finditem.authorname});
+       response.render("posts",{title: finditem.title,postBody: finditem.postBody,picname: finditem.picname,author:finditem.authorname ,mail: finditem.authorEmail});
     });
 });
 

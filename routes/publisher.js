@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const post = require('../models/posts')
-const MarioChar = require('../models/mariochar');
+const {MarioChar,Subscriber}=require("../models/mariochar");
 const { ensureAuthenticated } = require('../config/auth');
 
 

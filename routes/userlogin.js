@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 // Load User model
-const MarioChar = require('../models/mariochar');
+const {MarioChar,Subscriber}=require("../models/mariochar");
 var bodyParser = require('body-parser');//for handling post request
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 

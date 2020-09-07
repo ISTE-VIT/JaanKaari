@@ -4,8 +4,10 @@ const post = require('../models/posts')
 const bodyParser=require("body-parser");
 const path = require('path')
 const multer = require('multer');
+const {MarioChar,Subscriber}=require("../models/mariochar");
 var _ = require('lodash');
-const MarioChar = require('../models/mariochar');
+const { ensureAuthenticated } = require('../config/auth');
+const { request } = require("express");
 
 
 
@@ -38,7 +40,7 @@ router.get("/:id/compose",function(request,response){
     response.render("compose");
 });
 
-router.post("/:id/compose",async(req,res) => {
+router.post("/:id/compose",ensureAuthenticated,async(req,res) => {
     var author_id=req.params.id;
     
     await MarioChar.findOne({_id:author_id}).then(user=>{
@@ -59,14 +61,14 @@ router.post("/:id/compose",async(req,res) => {
             });
         }
         else{
-             const newpost=await new post({
-                // _id:getNextSequence("userid"),
+             const newpost= new post({
                 title: req.body.posttitle,
                 postBody: req.body.postbody,
                 update:  dateStr,
                 picname: req.file.filename,
                  authorid: author_id,
                  authorname:author_name,
+                 authorEmail:req.user.email,
                 
             });
             newpost.save(function(err){
@@ -223,6 +225,8 @@ router.get("/:id/account",async function(request,response){
             
          
 // }); 
+
+
 
 
 module.exports = router;

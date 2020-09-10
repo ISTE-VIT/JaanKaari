@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 const post = require('../models/posts')
 const {MarioChar,Subscriber}=require("../models/mariochar");
 const { ensureAuthenticated } = require('../config/auth');
 
+
+router.use('/',express.static(__dirname+"/roots"))
 
 router.use('/',express.static(__dirname+"/roots"))
 // router.get('/dashboard',function(req,res){
@@ -18,7 +21,8 @@ router.get(`/dashboard`,async function(req,res){
 
 
 router.get('/store',function(req,res){
-    res.render('store');
+    res.sendFile('store.html', {root: './roots'});
+
 })
 router.get('/contribute',function(req,res){
     res.render('contribute');

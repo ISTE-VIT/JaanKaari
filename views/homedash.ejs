@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  
+ 
+ <style>
+   @font-face {
+  src: url('../fonts/Poppins/Poppins-Regular.ttf');
+  font-family: Poppins;
+}
+@font-face {
+  font-family: 'PoppinsBlack';
+  src: url("../fonts/Poppins/Poppins-Black.ttf");
+}
+
+@font-face {
+  font-family: 'PoppinsBold';
+  src: url("../fonts/Poppins/Poppins-Bold.ttf");
+}
+
+@font-face {
+  font-family: 'PoppinsSemiBold';
+  src: url("../fonts/Poppins/Poppins-SemiBold.ttf");
+}
+
+th, td, p, input {
+  font:1.2rem ;
+  font-family:Poppins;
+  color: white;
+  border-radius: 100%;
+}
+table, th, td
+{
+  border:solid 1px grey;
+  border-collapse: separate;
+  padding: 2px 3px;
+  margin-left: 2rem;
+  text-align: center;
+  border-radius: 10%;
+}
+table{
+margin-left: auto;
+margin-right: auto;
+margin-top: 5rem;
+border: none;
+}
+td{
+width: 9rem;
+text-align:center;
+/* border-radius: 100% */
+}
+td:nth-child(1),th:nth-child(1){
+text-align: left;
+width: 16rem;
+border-radius: 10%;
+font-weight: lighter;
+
+}
+
+td:nth-child(2),th:nth-child(2){
+color: #00a8cc;
+}
+
+td:nth-child(3), th:nth-child(3){
+color: #ffd31d;
+}
+
+td:nth-child(4), th:nth-child(4){
+color: #ff3434;
+}
+
+td:nth-child(5),th:nth-child(5){
+color: #21bf73;
+}
+th {
+  font-weight:bold;
+  margin: auto;
+  text-transform: capitalize;
+  border: solid 3px grey;
+}
+
+body{
+background: #1b262c;
+font-family: Poppins;
+color: #ccc;
+}
+
+/* navbar css starts */
+
+.navbar-custom {
+  background: #1b262c  !important;
+}
+
+.navbar-custom .navbar-brand {
+  color: #fff;
+  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.navbar-custom .navbar-nav .active  .nav-link, .navbar-custom .navbar-nav .nav-link.active, .navbar-custom .navbar-nav .nav-link.show, .navbar-custom .navbar-nav .show  .nav-link {
+  color: #fff;
+}
+
+.navbar-custom .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.navbar-toggler {
+  background: #fff ;
+}
+
+.navbar-nav {
+  text-align: center;
+}
+
+.nav-link {
+  padding: .2rem 1rem;
+}
+
+.nav-link.active,.nav-link:focus{
+  color: #fff;
+}
+
+.navbar-toggler {
+  padding: 1px 5px;
+  font-size: 18px;
+  line-height: 0.3;
+}
+
+.navbar-custom .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  color: #fff;
+}
+
+/* navbar css ends */
+
+#text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 700px;
+  padding: 0 3rem;
+}
+
+h1, h2 {
+  font-weight: 200;
+  margin: 0.4rem;
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #aaa;
+}
+
+/* Cursor */
+.txt-type > .txt {
+  border-right: 0.2rem solid #777;
+}
+
+@media(min-width: 1200px) {
+  h1 {
+    font-size: 5rem;
+  }
+}
+
+@media(max-width: 800px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+ </style>
+<link rel="stylesheet" href="./assets/css/contribute.css">
+
+    <title>JaanKaari</title>
+
+</head>
+<body>
+
+  <!-- navbar starts here -->
+
+  <nav class="navbar navbar-expand-lg navbar-custom bg-primary fixed-top">
+              <div class="container">
+                <a class="navbar-brand" href="#" style="color:white">JAANKARI</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item ">
+                      <a class="nav-link" href="./dashboard">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link " href="./store">Stores near me</a>
+                    </li>
+                    <li class="nav-item" >
+                      <a class="nav-link" href="./blog">Blogs</a>
+                    </li>
+                   
+            
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Account
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="#">Welcome <%= user.username %></a>
+    
+                          <a class="dropdown-item" href="/logout">Logout</a>
+                         
+                        </div>
+                      </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+
+          </div>
+
+  <!-- navbar ends here -->
+  <div class="bgimg" style="background-image: url('assets/img/homebgg.png');background-repeat: no-repeat; background-size: 30%; background-position-x: right; background-position-y: center;">
+  
+  <div class="container" id="text">
+    <h1> 
+      <span class="txt-type" data-wait="3000" data-words='["Salute to Corona Fighters"]'></span>
+    </h1>
+    <h2>#STAYHOMESTAYSAFE</h2>
+    <br>
+    <br>
+    <br>
+
+  </div>
+
+    <!-- table begins here -->
+    <!-- <input type="button" onclick="getdata()" value="Create Table From JSON" /> -->
+    <p id="showData"></p>
+    <!-- table ends here -->
+
+    <!-- news begins here -->
+    <div id="heading">
+      Stay Home Stay Safe
+    </div>
+    <!-- table starts here -->
+      <p id="showData"></p>
+      <!-- table ends here -->
+  
+       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <canvas id="confirmed_chart"></canvas>
+      </div>
+      <div class="carousel-item">
+        <canvas id="recovered_chart"></canvas>
+      </div>
+      <div class="carousel-item">
+        <canvas id="deceased_chart"></canvas>
+      </div>
+    </div>
+  
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" onclick="data-slide" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" onclick="data-slide" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+
+    <!-- news ends here -->
+
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script > 
+const numbersdata='https://api.covid19india.org/data.json';
+const newsurl='http://newsapi.org/v2/top-headlines?country=in&apiKey=7e754275e858439ea61a252d83d646b3';
+async function  getdata(){
+
+   const response= await fetch(numbersdata);
+    const json =await response.json();
+    const {statewise}=json;
+   console.log(statewise)
+
+
+   var col = [];
+       for (var i = 0; i < statewise.length; i++) {
+           delete statewise[i]._id
+           delete statewise[i].deltaconfirmed
+           delete statewise[i].deltadeaths
+           delete statewise[i].deltarecovered
+           delete statewise[i].lastupdatedtime
+           delete statewise[i].migrated
+           delete statewise[i].statecode
+           delete statewise[i].statenotes
+           delete statewise[i].migratedother
+
+           for (var key in statewise[i]) {
+               if (col.indexOf(key) === -1) {
+                   col.push(key);
+               }
+           }
+       }
+
+       var table = document.createElement("table");
+
+       // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+
+       var tr = table.insertRow(-1);                   // TABLE ROW.
+
+       var th = document.createElement("th");      // TABLE HEADER.
+       th.innerHTML = col[4];
+       tr.appendChild(th);
+
+       var th = document.createElement("th");      // TABLE HEADER.
+       th.innerHTML = col[1];
+       tr.appendChild(th);
+
+       var th = document.createElement("th");      // TABLE HEADER.
+       th.innerHTML = col[0];
+       tr.appendChild(th);
+
+       for (var i = 2; i <col.length-1 ; i++) {
+           var th = document.createElement("th");      // TABLE HEADER.
+           th.innerHTML = col[i];
+           tr.appendChild(th);
+       }
+
+       // ADD JSON DATA TO THE TABLE AS ROWS.
+       for (var i = 1; i < statewise.length; i++) {
+
+           tr = table.insertRow(-1);
+           var tabCell = tr.insertCell(-1);
+           tabCell.innerHTML = statewise[i][col[4]];
+
+
+           var tabCell = tr.insertCell(-1);
+           tabCell.innerHTML = statewise[i][col[1]];
+
+
+           var tabCell = tr.insertCell(-1);
+           tabCell.innerHTML = statewise[i][col[0]];
+
+           for (var j = 2; j < col.length-1; j++) {
+               var tabCell = tr.insertCell(-1);
+               tabCell.innerHTML = statewise[i][col[j]];
+           }
+       }
+
+       //last row for total cases
+       /*tr = table.insertRow(-1);
+       var tabCell = tr.insertCell(-1);
+       tabCell.innerHTML = statewise[0][col[4]];
+
+       var tabCell = tr.insertCell(-1);
+       tabCell.innerHTML = statewise[0][col[1]];
+
+       var tabCell = tr.insertCell(-1);
+       tabCell.innerHTML = statewise[0][col[0]];
+
+       for (var j = 2; j < col.length-1; j++){
+       var tabCell = tr.insertCell(-1);
+       tabCell.innerHTML = statewise[0][col[j]];
+     }*/
+
+       // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+       var divContainer = document.getElementById("showData");
+       divContainer.innerHTML = "";
+       divContainer.appendChild(table);
+
+}
+getdata();
+
+async function news(){
+ const response= await fetch(newsurl);
+  const news =await response.json();
+  const articles= news.articles;
+
+  console.log(articles[0].title);
+}
+
+news();
+
+class TypeWriter {
+    constructor(txtElement, words, wait = 3000) {
+      this.txtElement = txtElement;
+      this.words = words;
+      this.txt = '';
+      this.wordIndex = 0;
+      this.wait = parseInt(wait, 10);
+      this.type();
+      this.isDeleting = false;
+    }
+  
+    type() {
+      // Current index of word
+      const current = this.wordIndex % this.words.length;
+      // Get full text of current word
+      const fullTxt = this.words[current];
+  
+      // Check if deleting
+      if(this.isDeleting) {
+        // Remove char
+        this.txt = fullTxt.substring(0, this.txt.length - 1);
+      } else {
+        // Add char
+        this.txt = fullTxt.substring(0, this.txt.length + 1);
+      }
+  
+      // Insert txt into element
+      this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
+  
+      // Initial Type Speed
+      let typeSpeed = 300;
+  
+      if(this.isDeleting) {
+        typeSpeed /= 2;
+      }
+  
+      // If word is complete
+      if(!this.isDeleting && this.txt === fullTxt) {
+        // Make pause at end
+        typeSpeed = this.wait;
+        // Set delete to true
+        this.isDeleting = true;
+      } else if(this.isDeleting && this.txt === '') {
+        this.isDeleting = false;
+        // Move to next word
+        this.wordIndex++;
+        // Pause before start typing
+        typeSpeed = 500;
+      }
+  
+      setTimeout(() => this.type(), typeSpeed);
+    }
+  }
+  
+  
+  // Init On DOM Load
+  document.addEventListener('DOMContentLoaded', init);
+  
+  // Init App
+  function init() {
+    const txtElement = document.querySelector('.txt-type');
+    const words = JSON.parse(txtElement.getAttribute('data-words'));
+    const wait = txtElement.getAttribute('data-wait');
+    // Init TypeWriter
+    new TypeWriter(txtElement, words, wait);
+  }
+
+</script>
+
+
+</html>

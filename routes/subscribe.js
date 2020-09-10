@@ -9,7 +9,7 @@ var _ = require('lodash');
 const { ensureAuthenticated } = require('../config/auth');
 const auth=require("../config/key");
 
-router.post("/",ensureAuthenticated,function(request,response){
+router.post("/post/subscribe",ensureAuthenticated,function(request,response){
     let flag=0;
     const mail=request.body.mail;
     MarioChar.find({email:request.user.email},function(err,found){

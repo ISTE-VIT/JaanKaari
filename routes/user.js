@@ -14,7 +14,7 @@ router.get('/dashboard',function(req,res){
 router.get("/post/:id",ensureAuthenticated,function(request,response){
     const search=request.params.id;
     post.findOne({_id: search},function(err,finditem){
-       response.render("posts",{title: finditem.title,postBody: finditem.postBody,picname: finditem.picname,author:finditem.authorname,mail:finditem.authorEmail});
+       response.render("viewpost",{title: finditem.title,postBody: finditem.postBody,picname: finditem.picname,author:finditem.authorname,mail:finditem.authorEmail});
     });
 });
 

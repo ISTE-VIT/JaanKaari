@@ -18,6 +18,7 @@ require('./config/passport')(passport);
 const MarioChar = require('./models/mariochar');
 
 //EJS
+
 app.set('view engine','ejs');
 
 //body-parser
@@ -63,6 +64,8 @@ mongoose.connect('mongodb://localhost/log',{ useNewUrlParser: true}).then(() => 
 app.use('/', require('./routes/index.js'));
 app.use('/', require('./routes/userlogin.js'));
  app.use('/user/:id',ensureAuthenticated, require('./routes/user.js'));
+ app.use('/user/:id',ensureAuthenticated, require('./routes/subscribe.js'));
+ app.use('/publisher/:id',ensureAuthenticated, require('./routes/subscribe.js'));
 app.use('/publisher/:id',ensureAuthenticated, require('./routes/publisher.js'));
 app.use('/publisher', ensureAuthenticated,require('./routes/blog.js'));
 

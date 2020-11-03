@@ -176,7 +176,7 @@ async function  getdata(){
   recovered_chart.options.legend.labels.fontSize = 25;
   recovered_chart.update();
 
-
+  console.log(1);
 
 
 };

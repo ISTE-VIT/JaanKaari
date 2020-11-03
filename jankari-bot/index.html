@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>jankari-bot</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="dist/jquery.convform.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<style>
+		#myForm {
+			display: none;
+			bottom: 50px;
+			
+
+		}
+
+		.open-button {
+			display: block;
+			bottom: 50px;
+			position: fixed;
+			right: 50px;
+			background: #5A5EB9;
+			width: 80px;
+			height: 80px;
+			border-radius: 50%;
+			color: white;
+			padding: 28px;
+			cursor: pointer;
+			box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.6), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+		}
+	</style>
+</head>
+
+<body>
+	<section id="demo">
+		<div class="vertical-align">
+			<div class="container">
+
+				<button class="open-button" id="open-button" onclick="openForm()">Chat</button>
+				<div class="row">
+					<div class="col-sm-4 col-sm-offset-3 col-xs-offset-0" style="margin-left: 75%;">
+
+						<div class="card no-border" id="myForm">
+							<div id="chat" class="conv-form-wrapper">
+								<form action="" method="GET" class="hidden">
+									<select
+										data-conv-question="Hello! I'm jankari-bot 🤖, for you, with you, Always❤️. Lets burst your myths">
+										<option value="Yes">Lets Go!</option>
+										<option value="exit">exit</option>
+									</select>
+									<input type="text" name="name"
+										data-conv-question="Alright! First, tell me your full name, please.|Okay! Please, tell me your name first.">
+									<input type="text"
+										data-conv-question="Howdy, {name}:0! It's a pleasure to meet you."
+										data-no-answer="true">
+									<input type="text" data-conv-question="You can browse our website"
+										data-no-answer="true">
+									<select name="multi[]" data-conv-question="Which section do you want to explore?"
+										multiple>
+										<option value="home">Home</option>
+										<option value="Stores around you">Stores around you</option>
+										<option value="Blogs">Blogs</option>
+										<option value="Signup/Login">Signup/Login</option>
+										<option value="Continue">Continue</option>
+									</select>
+									<select name="Q1" data-callback="storeState" data-conv-question="Question 1">
+										<option value="1">possible answer 1</option>
+										<option value="2">possible answer 2</option>
+									</select>
+									<div data-conv-fork="Q1">
+										<div data-conv-case="1">
+											<input type="text" data-conv-question="ques2 if ans1 is selected"
+												data-no-answer="true">
+										</div>
+										<div data-conv-case="2">
+											<select name="thought" data-conv-question="ques2 if ans2 is selected">
+												<option value="Yes">Yes</option>
+												<option value="No">No..</option>
+											</select>
+										</div>
+									</div>
+									<input type="text"
+										data-conv-question="Please share your contact details so we can reach you with latest updates"
+										data-no-answer="true">
+									<input data-conv-question="Type in your e-mail"
+										data-pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+										id="email" type="email" name="email" required placeholder="What's your e-mail?">
+									<input data-conv-question="its an example if we want to take something encripted"
+										type="password" data-minlength="6" id="senha" name="password" required
+										placeholder="password">
+									<select data-conv-question="we can enter external links here">
+										<option value="google" data-callback="google">Google</option>
+										<option value="bing" data-callback="bing">Bing</option>
+									</select>
+									<select name="callbackTest"
+										data-conv-question="Want to go back to the first question ?">
+										<option value="yes" data-callback="rollback">Yes</option>
+										<option value="no" data-callback="restore">No</option>
+									</select>
+									<select data-conv-question="SO, are you satisfied with the jankari 📰🗞️">
+										<option>Yes</option>
+										<option>Maybe useful</option>
+									</select>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script type="text/javascript" src="jquery-1.12.3.min.js"></script>
+	<script type="text/javascript" src="dist/autosize.min.js"></script>
+	<script type="text/javascript" src="dist/jquery.convform.js"></script>
+
+	<script>
+		function openForm() {
+			document.getElementById("myForm").style.display = "block";
+			document.getElementById("open-button").style.display = "none";
+		}
+
+	</script>
+	<script>
+		function google(stateWrapper, ready) {
+			window.open("https://google.com");
+			ready();
+		}
+		function bing(stateWrapper, ready) {
+			window.open("https://bing.com");
+			ready();
+		}
+		var rollbackTo = false;
+		var originalState = false;
+		function storeState(stateWrapper, ready) {
+			rollbackTo = stateWrapper.current;
+			console.log("storeState called: ", rollbackTo);
+			ready();
+		}
+		function rollback(stateWrapper, ready) {
+			console.log("rollback called: ", rollbackTo, originalState);
+			console.log("answers at the time of user input: ", stateWrapper.answers);
+			if (rollbackTo != false) {
+				if (originalState == false) {
+					originalState = stateWrapper.current.next;
+					console.log('stored original state');
+				}
+				stateWrapper.current.next = rollbackTo;
+				console.log('changed current.next to rollbackTo');
+			}
+			ready();
+		}
+		function restore(stateWrapper, ready) {
+			if (originalState != false) {
+				stateWrapper.current.next = originalState;
+				console.log('changed current.next to originalState');
+			}
+			ready();
+		}
+	</script>
+	<script>
+		jQuery(function ($) {
+			convForm = $('#chat').convform({ selectInputStyle: 'disable' });
+			console.log(convForm);
+		});
+	</script>
+</body>
+
+</html>

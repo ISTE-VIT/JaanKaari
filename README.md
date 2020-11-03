@@ -13,7 +13,10 @@
 
 ## Installation
 ```
-$ git clone https://github.com/ISTE-VIT/JaanKaari.git
 $ npm install
 $ nodemon app
 ```
+
+<p align="center">
+	With :heart: &nbsp;by <a href="https://istevit.in/" target="_blank">ISTE-VIT</a>
+</p>

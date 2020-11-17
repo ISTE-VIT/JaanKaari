@@ -46,36 +46,36 @@ router.post("/post/subscribe",ensureAuthenticated,function(request,response){
     let transporter = nodemailer.createTransport({
         host:  "smtp.gmail.com",
         port: 587,
-        secure: false, 
+        secure: false,
         auth: {
-            user: auth.user, 
-            pass: auth.pass  
+            user: auth.user,
+            pass: auth.pass
         },
         tls:{
           rejectUnauthorized:false
         }
       });
-    
+
       let mailOptions = {
-          from: '"Jaankaari" <jaankaariiste82@gmail.com>', 
-          to: mail, 
-          subject: 'New Subscriber!', 
-          text: 'Hello world?', 
+          from: '"Umang Agarwal-JaanKaari" <agarwalumang012@gmail.com>', 
+          to: mail,
+          subject: 'New Subscriber!',
+          text: 'Hello world?',
           html: output
       };
-    
+
       transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
               return console.log(error);
           }
-          console.log('Message sent: %s', info.messageId);   
+          console.log('Message sent: %s', info.messageId);
           console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
       });
       response.send("subscribed");
         }
     });
-    
-    
+
+
 
 });
 

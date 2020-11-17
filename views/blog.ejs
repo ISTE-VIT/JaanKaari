@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/4.0/examples/blog/blog.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/nav.css">
-   
+
 
   </head>
 
@@ -32,7 +32,7 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-        
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item ">
@@ -44,7 +44,7 @@
                 <li class="nav-item" >
                   <a class="nav-link" href="./blog">Blogs</a>
                 </li>
-                
+
                 <li class="nav-item">
                   <a class="nav-link" href="./account">Account</a>
                 </li>
@@ -52,12 +52,12 @@
             </div>
           </div>
         </nav>
-    
+
       </header>
 
       <br><br><br><br>
-            
-         
+
+
 
       <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
@@ -65,11 +65,11 @@
       </div>
 
       <div class="container" style="height:100vh">
-   
-        <img src ="assets/img/blogpage.png" style="width:100%; height:60%">
+
+        <img src ="/assets/img/blogpage.png" style="width:100%; height:60%">
         <h1 style="text-align: center;color:#eee">Dive deeper on topics that matter to you.</h1>
-          
-     
+
+
           </div>
 
       <div class="row mb-2">
@@ -80,25 +80,25 @@
               <strong class="d-inline-block mb-2 text-primary">#stayinstaysafe</strong>
               <h3 class="mb-0">
                 <a class="text-dark" href="#"> <%= post[t].title %></a>
-                
+
               </h3>
               <p><i>By <%= post[t].authorname %></i></p>
               <div class="mb-1 text-muted"><%= post[t].update %></div>
-              
-              
+
+
 
               <p class="card-text mb-auto"><%= post[t].postBody.substring(0,100) %> <a href="./post/<%= post[t]._id %>">Read More</a> </p>
             </div>
             <div class="col-md-4">
-              <img src="./uploads/<%= post[t].picname %>" class="card-img" alt="..." style="width:100%; height:50% ;margin-top: 30%;">
+              <img src="/uploads/<%= post[t].picname %>" class="card-img" alt="..." style="width:100%; height:50% ;margin-top: 30%;">
             </div>
-    
+
           </div>
         </div>
         <% } %>
     </div>
 
-    
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

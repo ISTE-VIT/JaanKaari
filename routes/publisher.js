@@ -13,15 +13,15 @@ router.use('/',express.static(__dirname+"/roots"))
 //     res.render('dashboard',{user:req.user});
 // })
 router.get(`/dashboard`,async function(req,res){
-    
+
     // let user = await MarioChar.findById(req.params.id)
-   
+
     res.render('homedash',{user:req.user});
 })
 
 
 router.get('/store',function(req,res){
-    res.sendFile('store.html', {root: './roots'});
+    res.render('store');
 
 })
 router.get('/contribute',function(req,res){

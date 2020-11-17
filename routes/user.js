@@ -1,13 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const post = require('../models/posts')
+const post = require('../models/posts');
+const author = require('../models/mariochar');
 const { ensureAuthenticated } = require('../config/auth');
 
 
-router.use('/',express.static("./public")); 
+router.use('/',express.static("./public"));
 router.use('/',express.static(__dirname+"/roots"));
 router.get('/dashboard',function(req,res){
     res.render('homedash',{user:req.user});
+})
+
+
+router.get('/:id/account',function(req,res){
+    const authora=req.params.id;
+    author.MarioChar.findOne({_id: authora},function(err,finditem){
+      post.find({authorid: authora},function(err,finditem1){
+       res.render("docuser",{docname:finditem.username,post:finditem1});
+    });
+  });
 })
 
 
@@ -20,13 +31,13 @@ router.get("/post/:id",ensureAuthenticated,function(request,response){
 
 router.get("/blog",function(request,response){
     post.find({},function(err,foundtpost){
-        
+
             if(err)
             console.log(err);
             else
             response.render("bloguser",{post: foundtpost});
         });
-    
+
 });
 
 

@@ -10,6 +10,7 @@ const { ensureAuthenticated } = require('./config/auth');
 const app=express();
 
 
+require("dotenv").config();
 //passport config
 require('./config/passport')(passport);
 
@@ -25,12 +26,12 @@ app.set('view engine','ejs');
 app.use(express.urlencoded({ extended: true }));
 
 //Express-session
-app.use(session({ 
+app.use(session({
     secret: 'secret',
     resave:true,
     saveUninitialized:true,
  }));
- 
+
  //Passport Middleware
  app.use(passport.initialize());
 app.use(passport.session());
@@ -55,10 +56,11 @@ app.use('/',express.static(__dirname+"/public"))
 
 
 //connect to mongodb
-mongoose.set('useUnifiedTopology', true);
-mongoose.connect('mongodb://localhost/log',{ useNewUrlParser: true}).then(() => console.log('connected')).catch((err)=>console.log('err'));
-// mongoose.connect("mongodb://localhost:27017/blog",{ useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex:true});    
-
+const MONGOURI = process.env.MONGOURI;
+mongoose.connect(MONGOURI, {useNewUrlParser: true,useCreateIndex: true,useUnifiedTopology: true,})
+.then(() => console.log("Connected to database"))
+.catch((err) => console.log(err));
+mongoose.Promise = global.Promise;
 
 
 app.use('/', require('./routes/index.js'));

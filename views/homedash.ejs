@@ -2,8 +2,9 @@
 <html>
 <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  
- 
+
+
+
  <style>
    @font-face {
   src: url('../fonts/Poppins/Poppins-Regular.ttf');
@@ -175,8 +176,9 @@ h2 {
   }
 }
  </style>
-<link rel="stylesheet" href="./assets/css/contribute.css">
-
+<link rel="stylesheet" href="/assets/css/contribute.css">
+<link rel="stylesheet" href="/assets/css/homecss.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <title>JaanKaari</title>
 
 </head>
@@ -202,17 +204,17 @@ h2 {
                     <li class="nav-item" >
                       <a class="nav-link" href="./blog">Blogs</a>
                     </li>
-                   
-            
+
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Account
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="#">Welcome <%= user.username %></a>
-    
+
                           <a class="dropdown-item" href="/logout">Logout</a>
-                         
+
                         </div>
                       </li>
                   </ul>
@@ -223,10 +225,10 @@ h2 {
           </div>
 
   <!-- navbar ends here -->
-  <div class="bgimg" style="background-image: url('assets/img/homebgg.png');background-repeat: no-repeat; background-size: 30%; background-position-x: right; background-position-y: center;">
-  
+  <div class="bgimg" style="background-image: url('/assets/img/homebg.png');background-repeat: no-repeat; background-size: 30%; background-position-x: right; background-position-y: center;">
+
   <div class="container" id="text">
-    <h1> 
+    <h1>
       <span class="txt-type" data-wait="3000" data-words='["Salute to Corona Fighters"]'></span>
     </h1>
     <h2>#STAYHOMESTAYSAFE</h2>
@@ -235,20 +237,16 @@ h2 {
     <br>
 
   </div>
-
+</div>
     <!-- table begins here -->
     <!-- <input type="button" onclick="getdata()" value="Create Table From JSON" /> -->
     <p id="showData"></p>
     <!-- table ends here -->
 
-    <!-- news begins here -->
-    <div id="heading">
-      Stay Home Stay Safe
-    </div>
     <!-- table starts here -->
       <p id="showData"></p>
       <!-- table ends here -->
-  
+
        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -261,7 +259,7 @@ h2 {
         <canvas id="deceased_chart"></canvas>
       </div>
     </div>
-  
+
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" onclick="data-slide" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
@@ -282,14 +280,16 @@ h2 {
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script > 
+
+
+<script >
 const numbersdata='https://api.covid19india.org/data.json';
 const newsurl='http://newsapi.org/v2/top-headlines?country=in&apiKey=7e754275e858439ea61a252d83d646b3';
 async function  getdata(){
 
    const response= await fetch(numbersdata);
     const json =await response.json();
-    const {statewise}=json;
+    const {statewise,cases_time_series}=json;
    console.log(statewise)
 
 
@@ -378,6 +378,86 @@ async function  getdata(){
        divContainer.innerHTML = "";
        divContainer.appendChild(table);
 
+       var datelabels=[];
+       var total_confirmed=[];
+       var total_recovered=[];
+       var total_deceased=[];
+       const l = cases_time_series.length;
+       for(var i=l-60;i<l;i++)
+       {
+         datelabels.push(cases_time_series[i].date);
+         total_confirmed.push(cases_time_series[i].totalconfirmed);
+         total_recovered.push(cases_time_series[i].totalrecovered);
+         total_deceased.push(cases_time_series[i].totaldeceased);
+       }
+
+
+       //Graph starts here============================
+       var ctx = document.getElementById('confirmed_chart').getContext('2d');
+       var confirmed_chart = new Chart(ctx, {
+           type: 'line',
+           data: {
+                   labels: datelabels,
+                   datasets: [{
+                     label:'total confirmed',
+                     data: total_confirmed,
+                     backgroundColor:'transparent',
+                     borderColor:'#00a8cc',
+                     borderWidth: 5,
+                   }],
+                 }
+     });
+
+     var ctx = document.getElementById('recovered_chart').getContext('2d');
+     var recovered_chart = new Chart(ctx, {
+         type: 'line',
+         data: {
+                 labels: datelabels,
+                 datasets: [{
+                   label:'total recovered',
+                   data: total_recovered,
+                   backgroundColor:'transparent',
+                   borderColor:'#21bf73',
+                   borderWidth: 5,
+                 }],
+               }
+   });
+
+   var ctx = document.getElementById('deceased_chart').getContext('2d');
+   var deceased_chart = new Chart(ctx, {
+       type: 'line',
+       data: {
+               labels: datelabels,
+               datasets: [{
+                 label:'total deceased',
+                 data: total_deceased,
+                 backgroundColor:'transparent',
+                 borderColor:'#ff3434',
+                 borderWidth: 5,
+               }],
+             },
+
+ });
+ confirmed_chart.options.scales.yAxes[0].ticks.fontSize = 25 ;
+ confirmed_chart.options.scales.xAxes[0].ticks.fontSize = 25 ;
+ confirmed_chart.options.legend.labels.fontSize = 25;
+ confirmed_chart.update();
+
+ deceased_chart.options.scales.yAxes[0].ticks.fontSize = 25 ;
+ deceased_chart.options.scales.xAxes[0].ticks.fontSize = 25 ;
+ deceased_chart.options.legend.labels.fontSize = 25;
+ deceased_chart.update();
+
+ recovered_chart.options.scales.yAxes[0].ticks.fontSize = 25 ;
+ recovered_chart.options.scales.xAxes[0].ticks.fontSize = 25 ;
+ recovered_chart.options.legend.labels.fontSize = 25;
+ recovered_chart.update();
+
+ console.log(1);
+
+
+
+
 }
 getdata();
 
@@ -401,13 +481,13 @@ class TypeWriter {
       this.type();
       this.isDeleting = false;
     }
-  
+
     type() {
       // Current index of word
       const current = this.wordIndex % this.words.length;
       // Get full text of current word
       const fullTxt = this.words[current];
-  
+
       // Check if deleting
       if(this.isDeleting) {
         // Remove char
@@ -416,17 +496,17 @@ class TypeWriter {
         // Add char
         this.txt = fullTxt.substring(0, this.txt.length + 1);
       }
-  
+
       // Insert txt into element
       this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
-  
+
       // Initial Type Speed
       let typeSpeed = 300;
-  
+
       if(this.isDeleting) {
         typeSpeed /= 2;
       }
-  
+
       // If word is complete
       if(!this.isDeleting && this.txt === fullTxt) {
         // Make pause at end
@@ -440,15 +520,15 @@ class TypeWriter {
         // Pause before start typing
         typeSpeed = 500;
       }
-  
+
       setTimeout(() => this.type(), typeSpeed);
     }
   }
-  
-  
+
+
   // Init On DOM Load
   document.addEventListener('DOMContentLoaded', init);
-  
+
   // Init App
   function init() {
     const txtElement = document.querySelector('.txt-type');
@@ -458,7 +538,16 @@ class TypeWriter {
     new TypeWriter(txtElement, words, wait);
   }
 
-</script>
 
+
+  $('.carousel').carousel({
+    interval: false,
+  });
+
+
+</script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
 
 </html>
